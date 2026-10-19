@@ -6,8 +6,6 @@ namespace BankAccounts.Api.Tests.Unit.Services;
 
 public abstract class AccountServiceTestBase
 {
-    protected const int UnknownAccountId = 999;
-
     protected FakeAccountRepository Repository { get; private set; } = null!;
 
     protected AccountService Service { get; private set; } = null!;

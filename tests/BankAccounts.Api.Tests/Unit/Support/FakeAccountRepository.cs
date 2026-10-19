@@ -6,14 +6,11 @@ namespace BankAccounts.Api.Tests.Unit.Support;
 /// <summary>
 /// Test double for <see cref="IAccountRepository"/>. It stores and hands out copies,
 /// so a change to an account only becomes visible after the service calls Update.
-/// It also counts writes, so tests can check that failed operations write nothing.
 /// </summary>
 public class FakeAccountRepository : IAccountRepository
 {
     private readonly Dictionary<int, Account> _accounts = new();
     private int _nextId;
-
-    public int UpdateCount { get; private set; }
 
     public Account? GetById(int id) =>
         _accounts.TryGetValue(id, out var account) ? Copy(account) : null;
@@ -25,11 +22,7 @@ public class FakeAccountRepository : IAccountRepository
         return account;
     }
 
-    public void Update(Account account)
-    {
-        UpdateCount++;
-        _accounts[account.Id] = Copy(account);
-    }
+    public void Update(Account account) => _accounts[account.Id] = Copy(account);
 
     public bool Delete(int id) => _accounts.Remove(id);
 

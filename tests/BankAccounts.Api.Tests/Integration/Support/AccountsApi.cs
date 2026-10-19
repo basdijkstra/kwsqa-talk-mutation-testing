@@ -25,12 +25,6 @@ public class AccountsApi(HttpClient client)
             .Get($"{Accounts}/{id}")
             .Then();
 
-    public VerifiableResponse GetLocation(string location) =>
-        Given(client)
-            .When()
-            .Get(location)
-            .Then();
-
     public VerifiableResponse CreateAccount(string? type) =>
         Request()
             .Body(new { type })
@@ -38,9 +32,9 @@ public class AccountsApi(HttpClient client)
             .Post(Accounts)
             .Then();
 
-    public VerifiableResponse CreateAccountWithJson(string json, string contentType = "application/json") =>
+    public VerifiableResponse CreateAccountWithJson(string json) =>
         Request()
-            .ContentType(contentType)
+            .ContentType("application/json")
             .Body(json)
             .When()
             .Post(Accounts)

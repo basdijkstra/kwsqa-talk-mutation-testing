@@ -52,11 +52,6 @@ public static class ResponseAssertions
         return problem;
     }
 
-    public static void ShouldReturnEmptyResponse(this VerifiableResponse response, int expectedStatus) =>
-        response
-            .StatusCode(expectedStatus)
-            .ResponseBodyLength(NHamcrest.Is.EqualTo(0));
-
     private static ProblemJson ShouldReturnProblemWithStatus(
         this VerifiableResponse response, int expectedStatus, string expectedMediaType = "application/problem+json")
     {

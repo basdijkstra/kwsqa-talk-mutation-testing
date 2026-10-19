@@ -14,8 +14,6 @@ public class AccountStore(IAccountRepository repository)
 
     public Account SeedChecking(decimal balance = 0m) => Seed(AccountType.Checking, balance);
 
-    public Account SeedSavings(decimal balance = 0m) => Seed(AccountType.Savings, balance);
-
     public Account? Find(int id) => repository.GetById(id);
 
     public decimal BalanceOf(int id) =>
